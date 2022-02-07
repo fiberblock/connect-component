@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ConnectComponent />
-    <button @click="$modal.show('connectModal')">open modal</button>
+    <button @click="$modal.show('connectModal')">Open modal connect</button>
   </div>
 </template>
 

@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <ConnectComponent />
+    <button @click="$modal.show('connectModal')">Open modal connect</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import ConnectComponent from "./components/ConnectComponent.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    ConnectComponent,
   },
 };
 </script>

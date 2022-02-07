@@ -25,6 +25,20 @@ export default {
       type: Number,
       default: CHAIN_ID.FANTOM_OPERA,
     },
+    show: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch: {
+    show(newVal, oldVal) {
+      if (newVal) {
+        this.$modal.show("connectModal");
+      }
+      if (!newVal && oldVal) {
+        this.$modal.hide("connectModal");
+      }
+    },
   },
   data() {
     return {

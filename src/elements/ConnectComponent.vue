@@ -106,6 +106,7 @@ export default {
         this.$emit("response", {
           ...response,
           id,
+          connect: connector,
         })
         console.log(id)
       } catch (error) {

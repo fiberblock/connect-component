@@ -77,6 +77,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    cachedConnector: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     showModal: {
@@ -92,6 +96,13 @@ export default {
     return {
       availableConnectors,
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.cachedConnector) {
+        this.connectToWallet(this.cachedConnector)
+      }
+    })
   },
   methods: {
     async connectToWallet(id) {

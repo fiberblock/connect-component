@@ -21,9 +21,6 @@
       </div>
     </div>
   </transition>
-  <!-- <modal width="500px" height="auto" name="connectModal" scrollable adaptive>
-    
-  </modal> -->
 </template>
 
 <script>
@@ -99,15 +96,13 @@ export default {
   methods: {
     async connectToWallet(id) {
       try {
+        this.$emit("startLoading")
         const connectors = {
           metamask: this.connectMetamask,
           walletconnect: this.connectWalletConnect,
         }
         const connector = connectors[id]
         const response = await connector(this.chain)
-        console.debug({
-          response,
-        })
         this.$emit("response", {
           ...response,
           id,
@@ -119,6 +114,7 @@ export default {
         this.$emit("error", error)
       } finally {
         this.showModal = false
+        this.$emit("endLoading")
       }
     },
     async connectMetamask(chain) {
@@ -213,7 +209,6 @@ export default {
   font-size: 16px;
   margin: 0.333em 0px;
   color: rgb(169, 169, 188);
- 
 }
 
 @media screen and (max-width: 768px) {

@@ -1,9 +1,9 @@
 <template>
   <transition name="modal" v-if="showModal">
-    <div class="modal-mask" @click.stop="showModal = false">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-body">
+    <div class="connect-modal-mask" @click.stop="showModal = false">
+      <div class="connect-modal-wrapper">
+        <div class="connect-modal-container">
+          <div class="connect-modal-body">
             <div
               v-for="connector in availableConnectors"
               :key="connector.type"
@@ -236,7 +236,7 @@ export default {
   }
 }
 
-.modal-mask {
+.connect-modal-mask {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -248,12 +248,12 @@ export default {
   transition: opacity 0.3s ease;
 }
 
-.modal-wrapper {
+.connect-modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
 
-.modal-container {
+.connect-modal-container {
   max-width: 500px;
   max-height: 100%;
   overflow: auto;
@@ -262,21 +262,14 @@ export default {
   transition: all 0.3s ease;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
+.connect-modal-body {
   margin: 20px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   border-radius: 16px;
 }
 
-.modal-default-button {
-  float: right;
-}
+
 
 /*
  * The following styles are auto-applied to elements with

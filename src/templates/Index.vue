@@ -15,7 +15,7 @@
     <div>
       <button @click="show = true">Open modal connect</button>
     </div>
-    <ConnectComponent v-model="show" />
+    <ConnectComponent @error="onError" v-model="show" />
   </div>
 </template>
 
@@ -40,6 +40,12 @@ export default {
     return {
       show: false,
     }
+  },
+  methods: {
+    onError(err) {
+      console.debug({ err: err.message })
+      console.error(err)
+    },
   },
 }
 </script>

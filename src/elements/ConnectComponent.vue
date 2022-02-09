@@ -129,10 +129,11 @@ export default {
         this.$emit("endLoading")
       }
     },
+
     async connectMetamask(chain) {
       const chainInfo = CHAIN_INFO[chain]
       if (!window.ethereum) {
-        throw new Error("Please install metamask first")
+        throw new Error("No provider was found")
       }
       const provider = window.ethereum
       const chainId = Number(await provider.request({ method: "eth_chainId" }))
@@ -189,7 +190,7 @@ export default {
             account: accounts[0],
           })
         } catch (error) {
-          reject("Unable to connect to wallet")
+          reject(error)
         }
       })
     },
@@ -268,8 +269,6 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   border-radius: 16px;
 }
-
-
 
 /*
  * The following styles are auto-applied to elements with

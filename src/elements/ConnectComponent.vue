@@ -15,7 +15,9 @@
                 </div>
                 <div v-else>
                   <template v-if="isMobile">
-                    <a v-if="metamaskMobileDappLink" :href="metamaskMobileDappLink"
+                    <a
+                      v-if="metamaskMobileDappLink && !window.ethereum"
+                      :href="metamaskMobileDappLink"
                       ><Connector :connector="connector"
                     /></a>
                   </template>

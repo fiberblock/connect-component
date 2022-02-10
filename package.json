@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
-    "@walletconnect/web3-provider": "^1.7.1",
+    "@walletconnect/web3-provider": "^1.5.0",
     "bignumber.js": "^9.0.2",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^0.4.5",

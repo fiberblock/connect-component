@@ -253,7 +253,7 @@ export default {
           params: [
             {
               ...option,
-              chainId: this.toHex(option.chainId),
+              chainId: this.toHex(this.chain),
             },
           ],
         })
@@ -265,7 +265,7 @@ export default {
       try {
         return await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: this.toHex(option.chainId) }],
+          params: [{ chainId: this.toHex(this.chain) }],
         })
       } catch (error) {
         if (error.code === 4902) {

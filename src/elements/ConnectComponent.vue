@@ -235,7 +235,7 @@ export default {
       const provider = window.ethereum
       const chainId = Number(await provider.request({ method: "eth_chainId" }))
       if (chainId !== chain) {
-        await connectToCorrectChainMetamask(chainInfo)
+        await this.connectToCorrectChainMetamask(chainInfo)
       }
       const [address] = await window.ethereum //
         .request({ method: "eth_requestAccounts" })

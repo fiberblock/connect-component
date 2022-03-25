@@ -100,13 +100,13 @@ export const CHAIN_INFO = {
   },
   [CHAIN_ID.FUSE_MAINNET]: {
     explorer: "https://explorer.fuse.io/",
-    name: "Fuse mainnet",
+    name: "Fuse Mainnet",
     nativeCurrency: { name: "Fuse", symbol: "FUSE", decimals: 18 },
     rpcUrl: "https://rpc.fuse.io/",
   },
   [CHAIN_ID.FUSE_TESTNET]: {
     explorer: "https://explorer.fusespark.io/",
-    name: "Fuse testnet",
+    name: "Fuse Testnet",
     nativeCurrency: { name: "Fuse", symbol: "FUSE", decimals: 18 },
     rpcUrl: "https://explorernode.fusespark.io/",
   },
@@ -248,12 +248,18 @@ export default {
     },
     async addEthereumChain(option) {
       try {
-        return await provider.request({
+        console.debug({ option })
+        await window.ethereum.request({
           method: "wallet_addEthereumChain",
           params: [
             {
-              ...option,
               chainId: this.toHex(this.chain),
+              chainName: option.name,
+              nativeCurrency: {
+                ...option.nativeCurrency,
+              },
+              rpcUrls: [option.rpcUrl],
+              blockExplorerUrls: [option.explorer],
             },
           ],
         })
@@ -263,14 +269,16 @@ export default {
     },
     async connectToCorrectChainMetamask(option) {
       try {
-        return await window.ethereum.request({
+        await window.ethereum.request({
           method: "wallet_switchEthereumChain",
           params: [{ chainId: this.toHex(this.chain) }],
         })
       } catch (error) {
+        console.debug({ error })
         if (error.code === 4902) {
           // Error switch chain
-          this.addEthereumChain(option)
+          console.debug("GOHERE")
+          await this.addEthereumChain(option)
         } else {
           throw error
         }

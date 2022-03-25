@@ -15,7 +15,7 @@
     <div>
       <button @click="show = true">Open modal connect</button>
     </div>
-    <ConnectComponent @error="onError" v-model="show" />
+    <ConnectComponent @error="onError" :chain="123" v-model="show" />
   </div>
 </template>
 

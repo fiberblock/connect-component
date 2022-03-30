@@ -35,6 +35,7 @@
 <script>
 import BigNumber from "bignumber.js"
 import WalletConnectProvider from "@walletconnect/web3-provider"
+import FuseNetworkWalletConnectProvider from "fuse-walletconnect-web3-provider"
 import Connector from "./Connector.vue"
 
 const availableConnectors = [
@@ -286,13 +287,20 @@ export default {
     },
     async connectWalletConnect(chain) {
       const rpcUrl = CHAIN_INFO[chain].rpcUrl
-      const provider = new WalletConnectProvider({
-        rpc: {
-          [chain]: rpcUrl,
-        },
-        qrcode: true,
-        pollingInterval: 15000,
-      })
+      const provider = [CHAIN_ID.FUSE_MAINNET, CHAIN_ID.FUSE_TESTNET].includes(chain)
+        ? new FuseNetworkWalletConnectProvider({
+            rpc: {
+              [chain]: rpcUrl,
+            },
+            qrcode: true,
+          })
+        : new WalletConnectProvider({
+            rpc: {
+              [chain]: rpcUrl,
+            },
+            qrcode: true,
+            pollingInterval: 15000,
+          })
       // ensure that the uri is going to be available, and emit an event if there's a new uri
       if (!provider.wc.connected) {
         await provider.wc.createSession({ chainId: chain })

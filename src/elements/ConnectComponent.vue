@@ -74,6 +74,7 @@ export const CHAIN_ID = {
   AVAX_MAINNET: 43114,
   HUOBI_TESTNET: 256,
   HUOBI_MAINNET: 128,
+  ZKSYNC_TESTNET: 280,
 }
 
 export const CHAIN_INFO = {
@@ -134,6 +135,16 @@ export const CHAIN_INFO = {
     name: "Heco Mainnet",
     nativeCurrency: { name: "HT", symbol: "HT", decimals: 18 },
     rpcUrl: "https://http-mainnet.hecochain.com/",
+  },
+  [CHAIN_ID.ZKSYNC_TESTNET]: {
+    explorer: "https://zksync2-testnet.zkscan.io/",
+    name: "ZkSync Testnet",
+    nativeCurrency: {
+      name: "Ethereum",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrl: "https://zksync2-testnet.zksync.dev",
   },
 }
 

@@ -217,6 +217,9 @@ export default {
   },
   methods: {
     toHex(chainIdDec) {
+      if (chainIdDec === CHAIN_ID.SKALE_TESTNET) {
+        return "0x470e10ee57a29"
+      }
       return `0x${chainIdDec.toString(16)}`
     },
     async connectToWallet(id) {

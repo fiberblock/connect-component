@@ -75,6 +75,7 @@ export const CHAIN_ID = {
   HUOBI_TESTNET: 256,
   HUOBI_MAINNET: 128,
   ZKSYNC_TESTNET: 280,
+  SKALE_TESTNET: 1250011826715177,
 }
 
 export const CHAIN_INFO = {
@@ -145,6 +146,12 @@ export const CHAIN_INFO = {
       decimals: 18,
     },
     rpcUrl: "https://zksync2-testnet.zksync.dev",
+  },
+  [CHAIN_ID.SKALE_TESTNET]: {
+    explorer: "https://stocky-pleione.explorer.staging-v2.skalenodes.com/",
+    name: "Skale Testnet",
+    nativeCurrency: { name: "Skale", symbol: "sFUEL", decimals: 18 },
+    rpcUrl: "https://staging-v2.skalenodes.com/v1/stocky-pleione",
   },
 }
 
@@ -245,8 +252,8 @@ export default {
         throw new Error("No provider was found")
       }
       const provider = window.ethereum
-      const chainId = Number(await provider.request({ method: "eth_chainId" }))
-      if (chainId !== chain) {
+      const chainId = await provider.request({ method: "eth_chainId" })
+      if (chainId !== this.toHex(chain)) {
         await this.connectToCorrectChainMetamask(chainInfo)
       }
       const [address] = await window.ethereum //

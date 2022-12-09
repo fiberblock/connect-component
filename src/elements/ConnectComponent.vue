@@ -254,6 +254,7 @@ export default {
       }
     },
     async connectMetamask(chain) {
+      console.debug("BBBBB")
       const chainInfo = CHAIN_INFO[chain] ? CHAIN_INFO[chain] : this.chainInfo
       console.debug({
         chainInfo,

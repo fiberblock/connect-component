@@ -255,6 +255,11 @@ export default {
     },
     async connectMetamask(chain) {
       const chainInfo = CHAIN_INFO[chain] ? CHAIN_INFO[chain] : this.chainInfo
+      console.debug({
+        chainInfo,
+        CHAIN_INFO: CHAIN_INFO[chain],
+        chain,
+      })
       if (!window.ethereum) {
         throw new Error("No provider was found")
       }

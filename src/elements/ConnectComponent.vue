@@ -75,7 +75,7 @@ export const CHAIN_ID = {
   HUOBI_TESTNET: 256,
   HUOBI_MAINNET: 128,
   ZKSYNC_TESTNET: 280,
-  SKALE_TESTNET: 1250011826715177,
+  SKALE_TESTNET: 344106930,
 }
 
 export const CHAIN_INFO = {
@@ -148,10 +148,10 @@ export const CHAIN_INFO = {
     rpcUrl: "https://zksync2-testnet.zksync.dev",
   },
   [CHAIN_ID.SKALE_TESTNET]: {
-    explorer: "https://stocky-pleione.explorer.staging-v2.skalenodes.com/",
+    explorer: "https://staging-utter-unripe-menkar.explorer.staging-v3.skalenodes.com/",
     name: "Skale Testnet",
     nativeCurrency: { name: "Skale", symbol: "sFUEL", decimals: 18 },
-    rpcUrl: "https://staging-v2.skalenodes.com/v1/stocky-pleione",
+    rpcUrl: "https://staging-v3.skalenodes.com/v1/staging-utter-unripe-menkar",
   },
 }
 
@@ -218,7 +218,7 @@ export default {
   methods: {
     toHex(chainIdDec) {
       if (chainIdDec === CHAIN_ID.SKALE_TESTNET) {
-        return "0x470e10ee57a29"
+        return "0x1482a7b2"
       }
       return `0x${chainIdDec.toString(16)}`
     },

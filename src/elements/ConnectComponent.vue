@@ -162,6 +162,10 @@ export default {
       type: Number,
       default: CHAIN_ID.FANTOM_OPERA,
     },
+    chainInfo: {
+      type: Object,
+      default: {},
+    },
     value: {
       type: Boolean,
       default: false,
@@ -250,7 +254,7 @@ export default {
       }
     },
     async connectMetamask(chain) {
-      const chainInfo = CHAIN_INFO[chain]
+      const chainInfo = CHAIN_INFO[chain] ? CHAIN_INFO[chain] : this.chainInfo
       if (!window.ethereum) {
         throw new Error("No provider was found")
       }
@@ -307,7 +311,7 @@ export default {
       }
     },
     async connectWalletConnect(chain) {
-      const rpcUrl = CHAIN_INFO[chain].rpcUrl
+      const rpcUrl = CHAIN_INFO[chain] ? CHAIN_INFO[chain].rpcUrl : this.chainInfo.rpcUrl
       const provider = [CHAIN_ID.FUSE_MAINNET, CHAIN_ID.FUSE_TESTNET].includes(chain)
         ? new FuseNetworkWalletConnectProvider({
             rpc: {

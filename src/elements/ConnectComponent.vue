@@ -226,7 +226,7 @@ export default {
       }
       return `0x${chainIdDec.toString(16)}`
     },
-    async connectToWallet(id) {
+    async connectToWallet(id, chainId) {
       if (this.loading) return
       try {
         this.loading = true
@@ -236,7 +236,7 @@ export default {
           walletconnect: this.connectWalletConnect,
         }
         const connector = connectors[id]
-        const response = await connector(this.chain)
+        const response = await connector(chainId ?? this.chain)
         this.$emit("response", {
           ...response,
           id,
